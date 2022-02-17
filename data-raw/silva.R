@@ -1,24 +1,30 @@
 ## code to prepare `DATASET` dataset goes here
-library(data.table)
-library(tidyverse)
 library(here)
-
 here::i_am("data-raw/silva.R")
+source(here("data-raw", "deps.R"))
 
-here("sources/silva.R")
-df <- read_table(gzfile("../sources/taxmap_slv_ssu_ref_138.1.txt.gz"))
-
-
+version <- c("138", "1")
 
 
-df %>% mutate(root. = str_remove_all(root., " <.*?>")) %>% filter(no.rank == "genus") %>%
-    filter(str_detect(root., "Bacteria")) %>%
-    filter(str_detect(root., "group")) %>%
-    slice(10)
+url <- glue("https://www.arb-silva.de/fileadmin/silva_databases/release_{maver}_{miver}/Exports/taxonomy/taxmap_slv_ssu_ref_nr_{maver}.{miver}.txt.gz", 
+            maver = version[1], miver = version[2])
 
+d_file <- tempfile()
 
-df2 <- readDNAStringSet(filepath = "../sources/silva_nr99_v138.1_train_set.fa.gz")
-names(df2)[names(df2) %>% str_detect("Chlorobi")][1:10]
+download.file(url = url, destfile = d_file)
+silva <- read.table(gzfile(d_file), fill = TRUE, sep = "\t", header = TRUE)
+silva <- silva %>% distinct(path, taxid) %>% as_tibble() %>% 
+    filter(str_detect(path, "Bacteria")) %>%
+    mutate(ids = strsplit(path, ";", fixed = TRUE), .before = 1) %>% 
+    mutate(ids = map(ids, function(x) {
+        if (length(x) < 6){
+            x <- c(x, rep(NA_character_, 6 - length(x)))
+        }
+        tax <- as.list(x)
+        names(tax) <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus")
+        as_tibble(tax)
+    })) %>% unnest(ids) %>% 
+    select(Kingdom, Phylum, Class, Order, Family, Genus, taxid, path) %>% 
+    rename("full_path" = "path")
 
-
-usethis::use_data(DATASET, overwrite = TRUE)
+usethis::use_data(silva, overwrite = TRUE, internal = TRUE, version = 3)
