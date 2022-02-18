@@ -4,10 +4,17 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Quang", "Nguyen", , "quangpmnguyen@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2072-3279"))
-Description: What the package does (one paragraph).
+Description: This package performs functionality to create and curate taxonomic sets. 
+    The primary usage at the moment is to assign consistent identifiers.  
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.2
 Depends: 
     R (>= 2.10)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    TreeSummarizedExperiment,
+    phyloseq
