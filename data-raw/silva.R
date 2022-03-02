@@ -21,10 +21,11 @@ silva <- silva %>% distinct(path, taxid) %>% as_tibble() %>%
             x <- c(x, rep(NA_character_, 6 - length(x)))
         }
         tax <- as.list(x)
-        names(tax) <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus")
+        names(tax) <- c("kingdom", "phylum", "class", "order", "family", "genus")
         as_tibble(tax)
     })) %>% unnest(ids) %>% 
-    select(Kingdom, Phylum, Class, Order, Family, Genus, taxid, path) %>% 
-    rename("full_path" = "path")
+    select(taxid, kingdom, phylum, class, order, family, genus, path) %>% 
+    rename("full_path" = "path") %>% 
+    rename("ncbiid" = "taxid")
 
 usethis::use_data(silva, overwrite = TRUE, internal = TRUE, version = 3)
