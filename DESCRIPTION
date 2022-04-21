@@ -1,6 +1,6 @@
-Package: TaxaSets
+Package: TaxaSetsUtils
 Title: Creating and manipulating taxonomic sets 
-Version: 0.0.0.9000
+Version: 0.99.0
 Authors@R: 
     person("Quang", "Nguyen", , "quangpmnguyen@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2072-3279"))
@@ -13,8 +13,19 @@ RoxygenNote: 7.1.2
 Depends: 
     R (>= 2.10)
 Suggests: 
+    data.table (>= 1.14.2),
+    here (>= 1.0.1),
+    jsonlite (>= 1.8.0),
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    TreeSummarizedExperiment,
-    phyloseq
+    TreeSummarizedExperiment (>= 2.2.0),
+    phyloseq (>= 1.38.0),
+    taxizedb (>= 0.3.0),
+    magrittr (>= 2.0.3),
+    BiocParallel (>= 1.28.3),
+    rlang (>= 1.0.2),
+    stringdist (>= 0.9.8),
+    dplyr,
+    tidyr,
+    purrr

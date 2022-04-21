@@ -6,6 +6,13 @@ check_version <- function(db = c("silva", "metaphlan")){
     ver <- switch(db, 
            "silva" = "138.1"
     )
-    cat(paste(toupper(db), "version", ver))
+    message(paste(toupper(db), "version", ver))
     return(ver)
+}
+
+rebuild <- function(db){
+    db <- match.arg(db, c("ncbi"))
+    if (db == "ncbi"){
+        taxizedb::db_download_ncbi(overwrite = TRUE)
+    }
 }

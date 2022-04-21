@@ -1,4 +1,4 @@
-# TaxaSets: Create and manipulate taxa sets  
+# TaxaSetsUtils: Additional convenience functions to use taxonomic sets for microbiome analysis  
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
@@ -6,6 +6,9 @@
 <!-- badges: end -->
 
 
-This package provides functionality to create taxa sets from different sources. 
+This package provides utility functions to work with microbe sets. Some current (or planned) features:   
 
-The biggest problem with set-based analyses right now are standardized and unified identifiers. This package seeks to fill this gap by attempting to provide functionality to convert/match between different taxonomies and databases (most likely using NCBI identifiers) in order to facilitate enrichment analysis (method agnostic) with this data.  
+- [ ] Attaching NCBI ids to taxonomic tables using both conventional name queries as well as via lookups tables (e.g. for databases such as SILVA and ChocoPhlAn)
+- [ ] Use more complex path-matching approaches (e.g. [Balvocuiute & Huson](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-017-3501-4))  
+- [ ] Generate complementary `BiocSet` based on the dataset identifier (e.g. `taxa_names` in `phyloseq`) if multiple OTUs/ASVs are matched to the same genus/species.  
+- [ ] Attach sets from prepared ontologies such as BugSigDB  
