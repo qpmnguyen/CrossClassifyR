@@ -45,12 +45,13 @@ setMethod("mapid", "phyloseq", function(obj, type, ..., rebuild_ncbi = FALSE, db
     if (type == "name"){
         df <- .mapidnames(df = df, rebuild = rebuild_ncbi)
     } else if (type == "db"){
-        df <- .mapiddb(df = df)
+        df <- .mapiddb(df = df, db = db)
     }
     
     df <- df %>% as.data.frame() %>% 
         tibble::column_to_rownames("df_id") %>%
         as.matrix()
+
     phyloseq::tax_table(obj) <- df
     return(obj)
 })

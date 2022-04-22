@@ -11,6 +11,8 @@
 #' @importFrom taxizedb db_path db_download_ncbi
 .mapidnames <- function(df, rebuild = FALSE){
     # TODO: reminder that the first column will always be df_ids
+    # TODO: Reminder to implement a check_rank function first to ensure that 
+    # df is in the correct format.  
     if (!file.exists(taxizedb::db_path("ncbi")) | rebuild == TRUE){
         message("Downloading NCBI database")
         taxizedb::db_download_ncbi(overwrite = TRUE)
