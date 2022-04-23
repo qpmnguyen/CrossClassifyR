@@ -18,6 +18,10 @@ mapid(obj, type, ..., rebuild_ncbi = FALSE, db = NULL)
 \item{type}{Approach used to match names with identifiers. Can be either \code{db}, \code{path},
 \code{name}.}
 
+\item{...}{Other arguments not currently used}
+
+\item{rebuild_ncbi}{(Logical). Indicate whether \code{taxizedb} should re-build the cached NCBI database.}
+
 \item{db}{(String). If type is \code{db}, this argument specifies which db to use. Defaults to NULL.
 Currently only supports \code{silva} and \code{metaphlan}}
 }

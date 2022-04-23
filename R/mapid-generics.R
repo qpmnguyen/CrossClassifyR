@@ -6,6 +6,8 @@
 #'     \code{name}. 
 #' @param db (String). If type is \code{db}, this argument specifies which db to use. Defaults to NULL. 
 #'     Currently only supports \code{silva} and \code{metaphlan}
+#' @param rebuild_ncbi (Logical). Indicate whether \code{taxizedb} should re-build the cached NCBI database. 
+#' @param ... Other arguments not currently used
 #' @details The input is a \code{data.frame}, \code{matrix}, or typical microbiome container that has 
 #'     a taxonomic table specified. The schematic of a taxonomic table is a table where the left-most 
 #'     column indicates the highest level of the hierarchy (usually kingdom or superkingdom) and the right-most

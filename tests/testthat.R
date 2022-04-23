@@ -1,4 +1,4 @@
 library(testthat)
-library(TaxaSets)
+library(TaxaSetsUtils)
 
-test_check("TaxaSets")
+test_check("TaxaSetsUtils")

@@ -13,6 +13,7 @@
     # TODO: reminder that the first column will always be df_ids
     # TODO: Reminder to implement a check_rank function first to ensure that 
     # df is in the correct format.  
+    df_id <- fullname <- NULL
     if (!file.exists(taxizedb::db_path("ncbi")) | rebuild == TRUE){
         message("Downloading NCBI database")
         taxizedb::db_download_ncbi(overwrite = TRUE)
@@ -39,6 +40,7 @@
 #' @importFrom dplyr filter pull 
 #' @importFrom stringdist stringdist
 .matching <- function(fullname, match, rank, ..., threshold=0.1){
+    name <- NULL
     if (is.na(match)){
         out <- NA_character_
     } else {
